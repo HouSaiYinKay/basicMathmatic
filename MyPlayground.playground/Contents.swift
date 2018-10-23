@@ -15,7 +15,7 @@ func  partialSort(array:inout[Int],start:Int,end:Int) -> Int{
                 array[left] = array[right]
                 index = right
                 left += 1
-               print("right+\(array)")
+//               print("right+\(array)")
                 break   //符合条件,跳出本循环
             }
             right -= 1 //不符合条件,右侧指针--,进入下次循环
@@ -25,7 +25,7 @@ func  partialSort(array:inout[Int],start:Int,end:Int) -> Int{
             if array[left] > pov{
                 array[right] = array[left]
                 index = left
-                print("left1+\(array)")
+//                print("left1+\(array)")
                 right -= 1
                 break
             }
@@ -51,3 +51,15 @@ print("init= \(arr2)")
 quickSort(array: &arr2, start: 0, end: arr2.count-1)
 print(arr2)
 
+
+
+//var arr = [1,2,3,4,5,6];
+//var index = 0
+//
+//while 3 != index {
+//    while 3 > arr[index] {
+//        print(arr[index])
+//        index += 1
+//    }
+//
+//}
