@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <title>mergeSort</title>
+</head>
+
+
+
+<script>
+    //归并排序,讲究两个数组相比较,在比较的过程中将小的一个加入到另外的临时数组,知道数组的数量=1时,停止循环,将剩下的两边数组
+    //append到临时数组里面,一次归并排序完成,如此递归,知道排完所有数据
+    //下面是打印出调试数据,方便理解
+    /*
+    left=1
+    right=9
+    1,9        //1,9分成一组
+    left=8
+    right=4
+    4,8        //4,8为  3,4-8分组中两个分支
+    left=3
+    right=4,8
+    3,4,8       //3,4-8分成一组 与 1,9分组平级
+    left=1,9     //两边合并排序后,最后一趟合并
+    right=3,4,8
+    left=9
+    right=3,4,8
+    left=9
+    right=4,8
+    left=9
+    right=8
+    1,3,4,8,9
+    
+    */
+function　merge(left, right){
+    var　result=[];
+    while(left.length>0 && right.length>0){
+    document.write("left="+left);
+    document.write("<br>")
+    document.write("right="+right);
+    document.write("<br>")
+
+        if(left[0]<right[0]){
+        /*shift()方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。*/
+            result.push(left.shift());
+        }else{
+            result.push(right.shift());
+        }
+    }
+    document.write(result.concat(left).concat(right))
+    document.write("<br>")
+    return　result.concat(left).concat(right);
+}
+function　mergeSort(items){
+    if(items.length == 1){
+        return　items;
+}
+var　middle = Math.floor(items.length/2),
+    left = items.slice(0, middle),
+    right = items.slice(middle);
+    return　merge(mergeSort(left), mergeSort(right));
+}
+mergeSort([1,9,3,8,4])
+</script>
+</html>
