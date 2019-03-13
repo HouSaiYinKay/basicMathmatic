@@ -7,7 +7,7 @@
         <script>
         
         //声明及调用
-        var arr = [3,1,1,2,6,7,2,1,0,]
+        var arr = [4,3,2,1]  // 1 2 4 3
         quicksort(arr,0,arr.length-1)
         document.write(arr)
         
@@ -16,41 +16,23 @@
             var pov = arr[start] //基准值为默认的第一个元素值
             document.write("初始值"+arr);
             document.write("<br>")
-            document.write("pov"+pov);
+            document.write("pov="+pov);
             document.write("<br>")
             var left = start
             var right = end
         
-            while (left != right) { //当值不相等的时候进入循环
-              while (left<right&&arr[right]>pov) { //右边的值大于基准值则不需更换位置,然后继续下一个循环遍历,知道找到下一个需要更换的值
+            while (left < right) { //当值不相等的时候进入循环
+              while (left<right&&arr[right]>=pov) { //右边的值大于基准值则不需更换位置,然后继续下一个循环遍历,直到找到下一个需要更换的值
                 right--;
-                document.write("rightAt"+arr[right])
-                document.write("<br>")
               }
-              while (left<right&&arr[left]<=pov) {//左边的值若小于基准值,则不需更换位置,知道找到需要更换的值
+              arr[left]=arr[right]  //算法优化,减少交换次数,直接赋值
+              while (left<right&&arr[left]<=pov) {//左边的值若小于基准值,则不需更换位置
                 left++;
-                document.write("leftAt"+arr[left])
-                document.write("<br>")
               }
-              //指针停留的地方更换两个值
-              if(left<right){
-                document.write("交换"+arr[left]+arr[right]);
-                document.write("<br>");
-                var tmp =arr[left];
-                arr[left]=arr[right];
-                arr[right]=tmp;
-                document.write("交换结束"+arr);
-                document.write("<br>");
-              }
-              
+              arr[right]=arr[left]    //算法优化,减少交换次数,直接赋值
             }
-            //指针重合位置和元素的基准值做一次更换,完成一次二分
-            var tmp = arr[left];
-            arr[left]= arr[start];
-            arr[start]=tmp;
-            document.write("结束值"+arr);
-            document.write("<br>")
-            document.write("<br>")
+            //此时arr[left] 已经是中间值 (左边值都比arr[left]小,右边值都比arr[left]大),直接替代还原回基准值
+            arr[right]=pov   //此时left = right 
             return left;
           }
         function quicksort(arr,start,end){
